@@ -30,7 +30,7 @@
   border: 2px solid #C6AA6D;
 }
 .cardStats_container.effect {
-  border: 2px solid #BA5026;
+  border: 2px solid #b85b37;
 }
 .cardStats_container.spell {
   border: 2px solid #03917D;
@@ -42,7 +42,7 @@
   border: 2px solid #6082bb;
 }
 .cardStats_container.fusion {
-    border: 2px solid purple;
+    border: 2px solid rgb(134, 52, 211);
 }
 
 
