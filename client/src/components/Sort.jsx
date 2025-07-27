@@ -1,11 +1,20 @@
 import '../styles/sort.css'
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useFilterSort } from '../Contexts/FilterSortContext';
 
 export const Sort = ({onClose}) => {
-  const [selectedSortOption, setselectedSortOption] = useState("");
+  const { selectedSortOption, setSelectedSortOption } = useFilterSort();
 
   const handleSelect = (value) => {
-    setselectedSortOption(prev => prev === value ? "" : value)
+    setLocalSelectedSortOption(prev => prev === value ? "" : value)
+  }
+
+  const [localSelectedSortOption, setLocalSelectedSortOption] = useState(selectedSortOption);
+
+  const handleOk = () => {
+    setSelectedSortOption(localSelectedSortOption)
+    onClose();
   }
   return (
     <div className="sort_overlay" onClick={onClose}>
@@ -15,13 +24,13 @@ export const Sort = ({onClose}) => {
         <div className='sort_categories'>
           <button className='main_sort_btn'>Alphabetical Sorting</button>
           <button
-            className={`sort_option_btn ${selectedSortOption === "A-Z" ? 'selected' : ''}`}
+            className={`sort_option_btn ${localSelectedSortOption === "A-Z" ? 'selected' : ''}`}
             onClick={() => handleSelect("A-Z")}
           >
             A → Z
           </button>
           <button
-            className={`sort_option_btn ${selectedSortOption === "Z-A" ? 'selected' : ''}`}
+            className={`sort_option_btn ${localSelectedSortOption === "Z-A" ? 'selected' : ''}`}
             onClick={() => handleSelect("Z-A")}
           >
             Z → A
@@ -31,13 +40,13 @@ export const Sort = ({onClose}) => {
         <div className='sort_categories'>
           <button className='main_sort_btn'>Attack Sorting</button>
           <button
-            className={`sort_option_btn ${selectedSortOption === "Highest_Attack" ? 'selected' : ''}`}
+            className={`sort_option_btn ${localSelectedSortOption === "Highest_Attack" ? 'selected' : ''}`}
             onClick={() => handleSelect("Highest_Attack")}
           >
             ↑ Attack
           </button>
           <button
-            className={`sort_option_btn ${selectedSortOption === "Lowest_Attack" ? 'selected' : ''}`}
+            className={`sort_option_btn ${localSelectedSortOption === "Lowest_Attack" ? 'selected' : ''}`}
             onClick={() => handleSelect("Lowest_Attack")}
           >
             ↓ Attack
@@ -47,13 +56,13 @@ export const Sort = ({onClose}) => {
         <div className='sort_categories'>
           <button className='main_sort_btn'>Defense Sorting</button>
           <button
-            className={`sort_option_btn ${selectedSortOption === "Highest_Defense" ? 'selected' : ''}`}
+            className={`sort_option_btn ${localSelectedSortOption === "Highest_Defense" ? 'selected' : ''}`}
             onClick={() => handleSelect("Highest_Defense")}
           >
             ↑ Defense
           </button>
           <button
-            className={`sort_option_btn ${selectedSortOption === "Lowest_Defense" ? 'selected' : ''}`}
+            className={`sort_option_btn ${localSelectedSortOption === "Lowest_Defense" ? 'selected' : ''}`}
             onClick={() => handleSelect("Lowest_Defense")}
           >
             ↓ Defense
@@ -63,20 +72,22 @@ export const Sort = ({onClose}) => {
         <div className='sort_categories'>
           <button className='main_sort_btn'>Card Level Sorting</button>
           <button
-            className={`sort_option_btn ${selectedSortOption === "Highest_CardLevel" ? 'selected' : ''}`}
+            className={`sort_option_btn ${localSelectedSortOption === "Highest_CardLevel" ? 'selected' : ''}`}
             onClick={() => handleSelect("Highest_CardLevel")}
           >
             ↑ Level
           </button>
           <button
-            className={`sort_option_btn ${selectedSortOption === "Lowest_CardLevel" ? 'selected' : ''}`}
+            className={`sort_option_btn ${localSelectedSortOption === "Lowest_CardLevel" ? 'selected' : ''}`}
             onClick={() => handleSelect("Lowest_CardLevel")}
           >
             ↓ Level
           </button>
         </div>
-
-        <button className='sort_ok_btn' onClick={onClose}>Ok</button>
+        <Link to="/collection">
+          <button className='sort_ok_btn' onClick={handleOk}>Ok</button>
+         </Link>
+       
       </div>
     </div>
   )
