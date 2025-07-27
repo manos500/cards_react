@@ -2,34 +2,31 @@ import '../styles/filter.css'
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useFilterSort } from '../Contexts/FilterSortContext';
 
 export const Filter = () => {
-  const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedAttributes, setSelectedAttributes] = useState([]);
-  const [selectedLevels, setSelectedLevels] = useState([]);
-  const [selectedMonsterTypes, setSelectedMonsterTypes] = useState([]);
-  const [selectedSpellTrapTypes, setSelectedSpellTrapTypes] = useState([]);
-  const location = useLocation();
   const {
-    filterCardTypes = [],
-    attributeTypes = [],
-    levelTypes = [],
-    monsterTypes = [],
-    SpellTrapCardTypes = [],
-  } = location.state || {};
+    selectedTypes, setSelectedTypes,
+    selectedAttributes, setSelectedAttributes,
+    selectedLevels, setSelectedLevels,
+    selectedMonsterTypes, setSelectedMonsterTypes,
+    selectedSpellTrapTypes, setSelectedSpellTrapTypes,
+    clearFilters
+  } = useFilterSort();
+
+const location = useLocation();
+const {
+  filterCardTypes = [],
+  attributeTypes = [],
+  levelTypes = [],
+  monsterTypes = [],
+  SpellTrapCardTypes = []
+} = location.state || {};
 
   const toggleTypes = (type) => {
     setSelectedTypes((prev) => prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
   );
 };
-
-  const handleClear = () => {
-    setSelectedTypes([]);
-    setSelectedAttributes([]);
-    setSelectedLevels([]);
-    setSelectedMonsterTypes([]);
-    setSelectedSpellTrapTypes([]);
-  };
 
   return (
     <div className='filter_options_container'>
@@ -41,7 +38,7 @@ export const Filter = () => {
           <li key={index}>
             <button
             className={`option_btn ${selectedTypes.includes(type) ? 'selected' : ''}`}
-            onClick={() => toggleTypes(type)}
+            onClick={() => toggleTypes(type, selectedTypes, setSelectedTypes)}
           >
             {type}
           </button>
@@ -86,9 +83,9 @@ export const Filter = () => {
         ))}
       </div>
       <div className='options_footer'>
-        <button className='option_btn clear_filter_btn' onClick={handleClear}>Clear Filters</button>
+        <button className='option_btn clear_filter_btn' onClick={clearFilters}>Clear Filters</button>
         <Link to="/collection">
-          <button className='option_btn cancel_btn' onClick={handleClear}>Cancel</button>
+          <button className='option_btn cancel_btn' onClick={clearFilters}>Cancel</button>
         </Link>
         <Link to="/collection" state={{ selectedTypes, selectedAttributes, selectedLevels, selectedMonsterTypes, selectedSpellTrapTypes }}>
           <button className='option_btn ok_btn'>Ok</button>
