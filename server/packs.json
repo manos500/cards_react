@@ -629,7 +629,7 @@
           "set_name": "Legends of Blue Eyes White Dragon",
           "set_code": "CT14-EN002",
           "set_rarity": "Secret Rare",
-          "set_rarity_code": "(ScR)",
+          "set_rarity_code": "(UR)",
           "set_price": "27.92"
         },
         {
@@ -1408,7 +1408,7 @@
           "set_name": "Legends of Blue Eyes White Dragon",
           "set_code": "DB1-EN104",
           "set_rarity": "Common",
-          "set_rarity_code": "(C)",
+          "set_rarity_code": "(R)",
           "set_price": "0"
         },
         {
@@ -2339,7 +2339,7 @@
           "set_name": "Legends of Blue Eyes White Dragon",
           "set_code": "CT14-EN001",
           "set_rarity": "Secret Rare",
-          "set_rarity_code": "(ScR)",
+          "set_rarity_code": "(UR)",
           "set_price": "9.66"
         },
         {
@@ -3541,7 +3541,7 @@
           "set_name": "Legends of Blue Eyes White Dragon",
           "set_code": "TN23-EN002",
           "set_rarity": "Quarter Century Secret Rare",
-          "set_rarity_code": "",
+          "set_rarity_code": "(C)",
           "set_price": "0"
         },
         {
@@ -6512,7 +6512,7 @@
           "set_name": "Legends of Blue Eyes White Dragon",
           "set_code": "MP24-EN005",
           "set_rarity": "Quarter Century Secret Rare",
-          "set_rarity_code": "",
+          "set_rarity_code": "(C)",
           "set_price": "0"
         },
         {
@@ -10512,7 +10512,7 @@
           "set_name": "Legends of Blue Eyes White Dragon",
           "set_code": "MP24-EN004",
           "set_rarity": "Quarter Century Secret Rare",
-          "set_rarity_code": "",
+          "set_rarity_code": "(C)",
           "set_price": "0"
         },
         {
@@ -10679,7 +10679,7 @@
           "set_name": "Legends of Blue Eyes White Dragon",
           "set_code": "MP24-EN002",
           "set_rarity": "Quarter Century Secret Rare",
-          "set_rarity_code": "",
+          "set_rarity_code": "(C)",
           "set_price": "0"
         },
         {
@@ -12750,7 +12750,7 @@
           "set_name": "Legends of Blue Eyes White Dragon",
           "set_code": "LOB-000",
           "set_rarity": "Secret Rare",
-          "set_rarity_code": "(ScR)",
+          "set_rarity_code": "(R)",
           "set_price": "54.11"
         },
         {
