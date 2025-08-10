@@ -1,0 +1,125 @@
+@import './colorPalette.css';
+
+.loginRegister_bg{
+  margin: 0;
+  padding: 0;
+  background: var(--bg-dark);
+  color: var(--text-muted);
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.loginRegister_container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 70vw;
+  background: var(--gradient);
+  border: var(--border-card);
+  border-top: var(--highlight);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.loginRegister_container:hover{
+  background: var(--gradient-hover);
+}
+.loginRegister_container h1{
+  text-align: center;
+  color: var(--text);
+  padding: 20px 0;
+}
+
+.loginRegister_container .form_container{
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.form_container .txt_field{
+  position: relative;
+  border-bottom: 2px solid var(--text-muted);
+  margin: 30px 0;
+}
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: var(--text-muted);
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+}
+.txt_field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--text);
+  transition: .5s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+  top: -5px;
+  color: var(--text);
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
+  width: 100%;
+}
+
+.loginRegister_btn{
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  background: linear-gradient(0deg, hsl(0, 0%, 5%) 95%, hsl(0, 0%, 10%) 100%);;
+  border: var(--border-card);
+  border-top: 1px solid hsl(0, 0%, 60%);
+
+  
+}
+.loginRegister_btn:hover{
+  border: 2px solid var(--border);
+
+}
+.loginRegister_link{
+  margin: 20px 0;
+  text-align: center;
+  font-size: 15px;
+ 
+}
+.loginRegister_link a{
+  text-decoration: none;
+}
+
+.loginRegister_link span{
+  margin-left: 10px;
+  color: var(--text);
+  font-size: 15px;
+}
+.register_link a:hover{
+  text-decoration: underline;
+}
