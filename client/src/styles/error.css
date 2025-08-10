@@ -1,0 +1,12 @@
+@import './colorPalette.css';
+
+.error_icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.error_message {
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 15px;
+}
