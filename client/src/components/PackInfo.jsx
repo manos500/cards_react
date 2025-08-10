@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { Card } from "./Card.jsx"
 import { CardStats } from "./CardStats.jsx"
 import {useQuery} from "@tanstack/react-query"
-import { fetchPack1 } from "../api/pack1.js"
+import { fetchCards } from "../api/pack1.js"
 import '../styles/collection.css'
 import { PackContext } from "../Contexts/PackContext.jsx"
 
@@ -11,7 +11,7 @@ export const PackInfo = () => {
   const {selectedPack} = useContext(PackContext);
   const {isLoading, isError , data: cards} = useQuery({
     queryKey: ['cards'],
-    queryFn: fetchPack1,
+    queryFn: fetchCards,
   })
 
   if (isLoading) return <p style={{text:"red"}}>Loading cards...</p>;
@@ -21,7 +21,6 @@ export const PackInfo = () => {
   const cardTypes  = [...new Set(cards.map((card) => card.cardType))];
 
   const filteredByPack = cards.filter((card) => card.cardPack === selectedPack.packName);
-
 
   return (
     <div className="collection_container">

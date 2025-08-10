@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import '../styles/navbar.css'
+import { motion, AnimatePresence } from 'framer-motion';
 import { yugiohLogo, menu, close } from '../assets/index.js'
 
 export const Navbar = () => {
+  const user = JSON.parse(sessionStorage.getItem("user"))
   const [isScreenSmall, setIsScreenSmall] = useState(window.innerWidth < 630);
   const [LinksMenuToggle, SetLinksMenuToggle] = useState(false)
 
@@ -20,30 +22,73 @@ export const Navbar = () => {
     window.addEventListener("resize", handleResize);
     handleResize();
   }, []);
+
+  const logout = () => {
+    sessionStorage.removeItem("user");
+    window.location.reload();
+  }
+
   return (
-    <div className='navbar_container'>
-      <div className='logo_container'>
-        <img src={yugiohLogo} alt="yugioh"/>
+    <motion.div 
+    initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+    className='navbar_container'>
+      <div className='navbar_inner'>
+        <div className='logo_container'>
+          <img src={yugiohLogo} alt="yugioh"/>
+        </div>
+
+        <div className='links_container'>
+          {!isScreenSmall ? (
+            <>
+              <Link to="/" className='hover-underline-animation'>Home</Link>
+              <Link to="/shop" className='hover-underline-animation'>Shop</Link>
+              <Link to="/collection" className='hover-underline-animation'>Collection</Link>
+              {!user ? 
+                <Link to="/login" >
+                  <div className='login_btn'>Login</div>
+                </Link> : 
+                <button onClick={() => logout()} className='login_btn'>Logout</button>
+              }
+            </>
+          ) : (
+            <>
+              <img 
+                src={LinksMenuToggle ? close : menu} 
+                alt="" 
+                onClick={() => SetLinksMenuToggle(!LinksMenuToggle)} 
+                className="menu-icon"
+              />
+
+              <AnimatePresence>
+                {LinksMenuToggle && (
+                  <motion.div
+                    key="menu"
+                    initial={{ x: 600 }}
+                    animate={{ x: 0 }}
+                    exit={{ x: 600 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    className='hidden_menu_container'
+                  >
+                    <div className='hidden_links_container'>
+                      <Link to="/" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Home</Link>
+                      <Link to="/shop" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Shop</Link>
+                      <Link to="/collection" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Collection</Link>
+                      {!user ? 
+                        <Link to="/login" >
+                          <div className='login_btn'>Login</div>
+                        </Link> : 
+                        <button onClick={() => logout()} className='login_btn'>Logout</button>
+                      }
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </>
+          )}
+        </div>
       </div>
-      <div className='links_container'>{!isScreenSmall ? (<>
-        <Link to="/" className='hover-underline-animation'>Home</Link>
-        <Link to="/shop" className='hover-underline-animation'>Shop</Link>
-        <Link to="/collection" className='hover-underline-animation'>Collection</Link>
-      
-      </>) : (<>
-        <img src={LinksMenuToggle ? close : menu} alt="" onClick = {() => {SetLinksMenuToggle(!LinksMenuToggle)}} className = "menu-icon"/>
-        <div>{LinksMenuToggle && (
-          <div className='hidden_menu_container'>
-            <div className='hidden_links_container'>
-              <Link to="/" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Home</Link>
-              <Link to="/shop" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Shop</Link>
-              <Link to="/collection" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Collection</Link>
-            </div>
-          </div>
-        )}</div>
-      </>)}
-      </div>
-       
-    </div>
+    </motion.div>
   )
 }

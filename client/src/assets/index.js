@@ -1,14 +1,6 @@
 import yugiohLogo from './yugiohLogo.png';
 import close from './close.svg';
 import menu from './menu.svg';
-import pack1 from './pack1.png';
-import pack2 from './pack2.png';
-import pack3 from './pack3.png';
-import pack4 from './pack4.png';
-import pack5 from './pack5.png';
-import pack6 from './pack6.png';
-import pack10 from './pack10.png';
-import backCard from './backCard.png';
 import filter from './filter.png'
 import search from './search.png'
 import fire from './fire.png'
@@ -37,22 +29,17 @@ import ritualSpell from './Ritual.png'
 import counterSpell from './Counter.png'
 import continuousSpell from './Continuous.png'
 import quickSpell from './Quick.png'
-
-
-
+import C_rarity from './C_rarity.png'
+import R_rarity from './R_rarity.png'
+import SR_rarity from './SR_rarity.png'
+import UR_rarity from './UR_rarity.png'
+import instagramIcon from './instagramIcon.svg';
+import githubIcon from './githubIcon.svg';
 
 export {
     yugiohLogo,
     close,
     menu,
-    pack1,
-    pack2,
-    pack3,
-    pack4,
-    pack5,
-    pack6,
-    pack10,
-    backCard,
     filter,
     search,
     fire,
@@ -81,4 +68,10 @@ export {
     counterSpell,
     continuousSpell,
     quickSpell,
+    C_rarity,
+    R_rarity,
+    SR_rarity,
+    UR_rarity,
+    instagramIcon,
+    githubIcon
 }

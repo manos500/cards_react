@@ -84,6 +84,21 @@ export const Sort = ({onClose}) => {
             ↓ Level
           </button>
         </div>
+        <div className='sort_categories'>
+          <button className='main_sort_btn'>Rarity Sorting</button>
+          <button
+            className={`sort_option_btn ${localSelectedSortOption === "Highest_CardRarity" ? 'selected' : ''}`}
+            onClick={() => handleSelect("Highest_CardRarity")}
+          >
+            ↑ Rarity
+          </button>
+          <button
+            className={`sort_option_btn ${localSelectedSortOption === "Lowest_CardRarity" ? 'selected' : ''}`}
+            onClick={() => handleSelect("Lowest_CardRarity")}
+          >
+            ↓ Rarity
+          </button>
+        </div>
         <Link to="/collection">
           <button className='sort_ok_btn' onClick={handleOk}>Ok</button>
          </Link>

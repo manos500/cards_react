@@ -5,6 +5,8 @@ import {Shop} from './components/Shop'
 import {Collection} from './components/Collection'
 import {Footer} from './components/Footer'
 import { Filter } from "./components/Filter"
+import { Login } from './components/Login';
+import { Register } from './components/Register';
 import './App.css'
 import { OpenPack } from './components/OpenPack';
 import { PackInfo } from './components/PackInfo';
@@ -17,22 +19,37 @@ function App() {
 
   return (
     
-    <BrowserRouter>
-      <Navbar/>
-      <FilterSortProvider>  
-        <PackProvider>
-          <Routes>
-            <Route path="/" element = {<Home/>}/>
-            <Route path="/shop" element = {<Shop/>}/>
-            <Route path="/shop/buy" element={<OpenPack />} />
-            <Route path="/shop/info" element={<PackInfo />} />
-            <Route path="/collection" element = {<Collection/>}/>
-            <Route path="/collection/filter" element = {<Filter/>}/>
-          </Routes>
-        </PackProvider>
-      </FilterSortProvider> 
-      <Footer/>
-    </BrowserRouter>
+  <BrowserRouter>
+    <FilterSortProvider>  
+      <PackProvider>
+        <Routes>
+
+          
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+        
+          <Route
+            path="/*"
+            element={
+              <>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/shop" element={<Shop />} />
+                  <Route path="/shop/buy" element={<OpenPack />} />
+                  <Route path="/shop/info" element={<PackInfo />} />
+                  <Route path="/collection" element={<Collection />} />
+                  <Route path="/collection/filter" element={<Filter />} />
+                </Routes>
+                {/* <Footer /> */}
+              </>
+            }
+          />
+        </Routes>
+      </PackProvider>
+    </FilterSortProvider>
+  </BrowserRouter>
     
   )
 }

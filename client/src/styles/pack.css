@@ -1,32 +1,44 @@
+@import './colorPalette.css';
+
 .pack_container{
     position: relative;
-    border-radius: 15px;
+    border-radius: 1rem;
     width: 295px;
     height: 370px;
     display: flex;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     flex-direction: column;
- 
     align-items: center;
     overflow: hidden;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);  
+    background: var(--gradient);
+    border: var(--border-card);
+    border-top: 1px solid var(--highlight);
+    box-shadow: var(--shadow);
+    /* box-shadow: 0 1px 20px hsl(0, 0%, 15%);   */
     
+}
+
+.pack_container:hover {
+    background: var(--gradient-hover);
 }
 
 .pack_container img {
     width: 110%;
     overflow: hidden;
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
      
 }
 
 .pack_container h3 {
-    color: #17a2b8;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 14.8px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #3ea6ff;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.5%;
+    font-weight: bold;
+    font-family: 'open sans';
     
      
 }
@@ -43,6 +55,7 @@ button {
     border: none;
     border-radius: 2px;
     font-size: 20px;
+    letter-spacing: 0;
     font-weight: 700;
     padding: 6px 20px 6px 20px;
     color : white;
@@ -50,7 +63,12 @@ button {
 }
 
 .buyPack {
-    background: linear-gradient(to right, #14a50f 0%, #22c23c 100%);
+    background: linear-gradient(to right, #1cb324 0%, #22c23c 100%);
+    color: var(--text);
+    font-weight: 700;
+    border-radius: 0.5rem;
+    border: var(--border-card);
+    box-shadow: var(--shadow);
     
 }
 
@@ -59,7 +77,12 @@ button {
 }
 
 .PackInfo {
-    background: linear-gradient(to right, #1581a1 0%, #17a2b8 100%);
+    background: linear-gradient(to right, #4285f4 0%, #3ea6ff 100%);
+    color: var(--text);
+    font-weight: 700;
+    border-radius: 0.5rem;
+    border: var(--border-card);
+    box-shadow: var(--shadow);
     
 }
 

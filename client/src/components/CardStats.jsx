@@ -1,45 +1,7 @@
 import '../styles/cardStats.css'
-import { dark, light, fire, earth, wind, water, spell, trap, divine, star1, star2, star3, star4, star5, star6, star7, star8, star9, star10, star12, equipSpell, fieldSpell, ritualSpell, counterSpell, continuousSpell, quickSpell} from '../assets/index.js'
+import { spellTrapTypeImages, attributeImages, levelImages } from '../utils/imageMaps';
 
 export const CardStats = ({card, onClose}) => {
-
-  const attributeImages = {
-    WATER: water,
-    FIRE: fire,
-    WIND: wind,
-    DARK: dark,
-    LIGHT: light,
-    EARTH: earth,
-    SPELL: spell,
-    TRAP: trap,
-    DIVINE: divine,
-  }
-
-  const spellTrapTypeImages = {
-    "Field Spell": fieldSpell,
-    "Continuous Spell": continuousSpell,
-    "Quick-Play Spell": quickSpell,
-    "Equip Spell": equipSpell,
-    "Counter Spell": counterSpell,
-    "Ritual Spell": ritualSpell,
-    "Counter Trap": counterSpell,
-    "Continuous Trap": continuousSpell
-    
-  }
-
-  const levelImages = {
-    1: star1,
-    2: star2,
-    3: star3,
-    4: star4,
-    5: star5,
-    6: star6,
-    7: star7,
-    8: star8,
-    9: star9,
-    10: star10,
-    12: star12,
-  }
 
   const attributeImage = attributeImages[card.attribute];
   const levelImage = levelImages[card.level];

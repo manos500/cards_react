@@ -1,13 +1,38 @@
-.openPack_container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(5px);
-    display: flex;
+.openPack_container{
+    display: grid;
+    background: radial-gradient(120% 120% at 50% 0%, var(--bg-light) 50%, black);
+    height: 100vh;
+    grid-template-columns: repeat(11, 9.09vw);
+    grid-template-rows: repeat(8, 12.5vh);
     justify-content: center;
-    align-items: center;
-    z-index: 999;
+}
+
+.packCards_container {
+    grid-column: 1 / 12 ;
+    grid-row: 1 / 7;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    grid-template-columns: repeat(auto-fit, 100px);
+    gap: 15px;
+    font-family: "Poppins", sans-serif;
+    display: grid;
+    place-content: center;
+}
+
+.button_section {
+   grid-row: 7 / 9;
+   grid-column: 5 / 8 ;
+}
+
+.button_section button {
+  padding: 10px 50px 10px 50px;
+  border: 1px solid;
+  background: #27292d;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
 }

@@ -19,7 +19,7 @@
   height: 50vh;
   background: #111;
   border: 2px solid #474747;
-  padding: 30px 50px 15px 50px;
+  padding: 32px 50px 16px 50px;
   border-radius: 10px;
   color: white;
   display: flex;
@@ -29,7 +29,7 @@
 }
 
 .sort_title{
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 }
 
 .sort_categories{

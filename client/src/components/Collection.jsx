@@ -3,15 +3,16 @@ import { Card } from "./Card.jsx"
 import { CardStats } from "./CardStats.jsx"
 import { Sort } from "./Sort.jsx"
 import {useQuery} from "@tanstack/react-query"
-import { fetchPack1 } from "../api/pack1.js"
+import { fetchCards, fetchUserCollection } from "../api/pack1.js"
 import '../styles/collection.css'
 import { filter, search } from "../assets/index.js"
 import { Link } from 'react-router-dom';
 import { useFilterSort } from "../Contexts/FilterSortContext.jsx"
+import { Loader } from "./Loader.jsx"
+import { Error } from "./Error.jsx"
 
 export const Collection = () => {
 
-  // Get the filtered options tha user selected
   const {
     selectedTypes,
     selectedAttributes,
@@ -21,19 +22,61 @@ export const Collection = () => {
     selectedSortOption
   } = useFilterSort();
 
-
   const [selectedCard, setSelectedCard] = useState(null);
   const [isSortbtnPressed, setisSortbtnPressed] = useState(false);
   const [searchCard, setsearchCard] = useState('');
   const [inputValue, setInputValue] = useState('');
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
-  const {isLoading, isError , data: cards} = useQuery({
-    queryKey: ['cards'],
-    queryFn: fetchPack1,
-  })
+  // Get the filtered options tha user selected
+  
+  if (!user) {
+    return <div style={{ height: "100vh" }}>
+      <h1></h1>
+      </div>;
+  }
 
-  if (isLoading) return <p style={{text:"red"}}>Loading cards...</p>;
-  if (isError) return <p>Failed to load cards.</p>;
+  const {
+  isLoading: isLoadingCards,
+  isError: isErrorCards,
+  data: cards,
+} = useQuery({
+  queryKey: ['cards'],
+  queryFn: fetchCards,
+});
+
+const {
+  isLoading: isLoadingUserCollection,
+  isError: isErrorUserCollection,
+  data: userCollection,
+} = useQuery({
+  queryKey: ['cards2', user?.userid],
+  queryFn: () => fetchUserCollection(user.userid),
+  enabled: !!user?.userid,
+});
+
+if (isLoadingCards) { return (
+     <div className="loader_container">
+      <Loader />
+    </div>
+    );
+  }
+   
+  if (isErrorCards) {
+    return (
+      <div className="error_container">
+        <Error />
+      </div>
+    )
+  }
+
+const cardsWithUnlockStatus = cards.map(card => {
+  const matching = (userCollection || []).find(uc => uc.id === card.id);
+  return {
+    ...card,
+    unlocked: matching?.unlocked ?? false
+  };
+});
 
   // Send to Filter Component for dynamic 
   const cardTypes = [...new Set(cards.map((card) => card.cardType))];
@@ -42,20 +85,24 @@ export const Collection = () => {
   const levelTypes = [...new Set(cards.map((card) => card.level))];
   const monsterTypes = [...new Set(cards.map((card) => card.monsterType))];
   const SpellTrapCardTypes = [...new Set(cards.map((card) => card.SpellTrapCardType))];
-  
+  const rarityTypes = [...new Set(cards.map((card) => card.rarity))];
 
+  
   // Apply filters
-  const filteredCards = cards.filter((card) => {
+  const filteredCards = cardsWithUnlockStatus.filter((card) => {
     const matchesType = selectedTypes.length === 0 || selectedTypes.includes(card.filterCardType);
     const matchesAttribute = selectedAttributes.length === 0 || selectedAttributes.includes(card.attribute);
     const matchesLevel = selectedLevels.length === 0 || selectedLevels.includes(card.level);
     const matchesMonsterType = selectedMonsterTypes.length === 0 || selectedMonsterTypes.includes(card.monsterType);
     const matchesSpellTrapType = selectedSpellTrapTypes.length === 0 || selectedSpellTrapTypes.includes(card.SpellTrapCardType);
+    const rarityType = rarityTypes.length === 0 || rarityTypes.includes(card.rarity);
     
     const matchesSearchCard = searchCard === '' || card.name.toLowerCase().includes(searchCard.toLowerCase())
 
-    return matchesType && matchesAttribute && matchesLevel && matchesMonsterType && matchesSpellTrapType && matchesSearchCard;
+    return matchesType && matchesAttribute && matchesLevel && matchesMonsterType && matchesSpellTrapType && rarityType && matchesSearchCard;
   })
+
+  const rarityOrder = ["Common", "Rare", "Super Rare", "Ultra Rare"];
 
   // Apply sorting
   let sortedCards = [...filteredCards];
@@ -83,7 +130,19 @@ export const Collection = () => {
     sortedCards.sort((a, b) => (b.level || 0) - (a.level || 0));
   } else if (selectedSortOption === "Lowest_CardLevel") {
     sortedCards.sort((a, b) => (a.level || 0) - (b.level || 0));
-  }
+  } else if (selectedSortOption === "Highest_CardRarity") {
+    sortedCards.sort((a, b) => {
+      const indexA = rarityOrder.indexOf(a.rarity);
+      const indexB = rarityOrder.indexOf(b.rarity);
+      return (indexB === -1 ? -1 : indexB) - (indexA === -1 ? -1 : indexA);
+    });
+  } else if (selectedSortOption === "Lowest_CardRarity") {
+    sortedCards.sort((a, b) => {
+      const indexA = rarityOrder.indexOf(a.rarity);
+      const indexB = rarityOrder.indexOf(b.rarity);
+      return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB); 
+  });
+}
 
   const handleSearchCard = () => {
     setsearchCard(inputValue);

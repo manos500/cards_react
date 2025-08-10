@@ -1,7 +1,11 @@
+body {
+    background: radial-gradient(120% 120% at 50% 0%, var(--bg-light) 50%, black);
+}
+
 .collection_container {
     width: 100%;
     height: auto;
-    margin-top: 100px;
+    margin-top: 128px;
     align-items: center;
     text-align: center;
 }
@@ -14,19 +18,21 @@
 
 .collection_title {
   font-size: 40px;
-  font-family:'Times New Roman', Times, serif;
+  line-height: 110%;
+  letter-spacing: -2%;
+  font-family: 'Roboto';
   color: #E0E0E0;
-  margin-bottom: 40px;
+  margin-bottom: 64px;
   justify-content: center;
   display: flex;
 }
   
 .cards_grid {
-  margin-bottom: 40px;
-    margin-top: 30px;
+    margin-bottom: 32px;
+    margin-top: 32px;
     display: grid;
     grid-template-columns: repeat(auto-fit, 100px);
-    gap: 15px;
+    gap: 16px;
     justify-content: center;
 }
 
@@ -37,7 +43,6 @@
   flex-direction: row;
   align-items: center;
 
- 
 }
 
 .search_container{
@@ -45,7 +50,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-right: 50px;
+  margin-right: 64px;
 
 }
 
@@ -53,7 +58,7 @@
   color: #E0E0E0;
   height: 36px;
   width: 20vw;
-  padding: 0 12px;
+  padding: 0 16px;
   background: #27292d;
   border: 1px solid #a5a4a43a;
   border-radius: 24px 0 0 24px;
@@ -71,6 +76,7 @@
   background-color: #3b3e44;
   border-radius: 0 24px 24px 0;
   cursor: pointer;
+  
 }
 
 .search_btn img {
@@ -83,13 +89,16 @@
   justify-content: center;
   align-items: center;
   height: 36px;
+  width: 110px;
   padding: 0 16px;
   border: 1px solid #a5a4a43a;
   background-color: #27292d;
   border-radius: 18px;
   cursor: pointer;
   font-size: 14px;
-  width: 110px;
+  line-height: 160%;
+  letter-spacing: 0.5%;
+  font-family: 'Roboto';
 }
 
 .sortBtn{
@@ -104,7 +113,10 @@
   border-radius: 18px;
   cursor: pointer;
   font-size: 14px;
-  margin-right: 35px;
+  line-height: 160%;
+  letter-spacing: 0.5%;
+  font-family: 'Roboto';
+  margin-right: 32px;
 }
 
 .filterBtn h2{
@@ -112,7 +124,7 @@
 }
 
 .filterBtn img{
-  margin-left: 5px;
+  margin-left: 8px;
   width: 25px;
   height: 25px;
 }
@@ -122,7 +134,7 @@
 }
 
 .sortBtn img{
-  margin-left: 5px;
+  margin-left: 8px;
   width: 25px;
   height: 25px;
 }
@@ -143,12 +155,13 @@
   background-color: #3b3e44;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 535px) {
+
   .searchBar{
     color: #E0E0E0;
     height: 26px;
     width: 25vw;
-    padding: 0 12px;
+    padding: 0 16px;
     font-size: 12px;
   }
   .search_btn img {
@@ -158,7 +171,6 @@
   .search_btn{
     height: 26px;
     width: 40px;
-
   }
 
   .filterBtn{
@@ -169,7 +181,7 @@
     font-size: 12px;
   }
   .filterBtn img{
-    margin-left: 5px;
+    margin-left: 8px;
     width: 18px;
     height: 18px;
   }
@@ -181,7 +193,54 @@
     font-size: 12px;
   }
   .sortBtn img{
+    width: 18px;
+    height: 18px;
+  }
+} 
+
+@media (max-width: 415px) {
+  .searchBar{
+    color: #E0E0E0;
+    height: 26px;
+    width: 25vw;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  .search_btn img {
+    width: 12px;
+    height: 12px;
+  }
+
+
+  .search_container{
+    margin-right: 20px;
+  }
+
+.sortBtn{
+  margin-right: 15px;
+}
+
+  .filterBtn{
+    height: 26px;
+    width: 70px;
+  }
+  .filterBtn h2{
+    font-size: 12px;
+  }
+  .filterBtn img{
     margin-left: 5px;
+    width: 18px;
+    height: 18px;
+  }
+  .sortBtn{
+    height: 26px;
+    width: 70px;
+  }
+  .sortBtn h2{
+    font-size: 12px;
+  }
+  .sortBtn img{
+    margin-left: 8px;
     width: 18px;
     height: 18px;
   }
