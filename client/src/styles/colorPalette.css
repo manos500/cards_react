@@ -1,0 +1,56 @@
+:root {
+  --bg-dark: hsl(0, 0%, 0%);
+  --bg: hsl(0, 0%, 5%);
+  --bg-light: hsl(0, 0%, 10%);
+  --text: hsl(0, 0%, 95%);
+  --text-muted: hsl(0, 0%, 70%);
+  --border: hsl(0, 0%, 30%);
+  --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light) 100%);
+  --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
+  --highlight: hsl(0, 0%, 60%);
+  --border-card: 1px solid var(--border);
+  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+}
+
+.light {
+  --bg-dark: hsl(0, 0%, 90%);
+  --bg: hsl(0, 0%, 95%);
+  --bg-light: hsl(0, 0%, 100%);
+  --text: hsl(0, 0%, 5%);
+  --text-muted: hsl(0, 0%, 50%);
+  --border: hsl(0, 0%, 30%);
+  --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light) 100%);
+  --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
+  --highlight: hsl(0, 0%, 100%);
+  --border-card: 1px solid var(--bg);
+  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+}
+
+.blue{
+  --bg-dark: hsl(336 0% 1%);
+  --bg: hsl(300 0% 4%);
+  --bg-light: hsl(0 0% 9%);
+  --text: hsl(300 0% 95%);
+  --text-muted: hsl(300 0% 69%);
+  --highlight: hsl(330 0% 39%);
+  --border: hsl(0 0% 28%);
+  --border-muted: hsl(300 0% 18%);
+  --primary: hsl(204 74% 69%);
+  --border-card: 1px solid var(--bg);
+  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+
+}
+
+.lightblack{
+  --bg-dark: hsl(0, 0%, 10%);
+  --bg: hsl(0, 0%, 10%);
+  --bg-light: hsl(0, 0%, 15%);
+  --text: hsl(0, 0%, 95%);
+  --text-muted: hsl(0, 0%, 70%);
+  --border: hsl(0, 0%, 15%);
+  --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light) 100%);
+  --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
+  --highlight: hsl(0, 0%, 30%);
+  --border-card: 1px solid var(--border);
+  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+}
