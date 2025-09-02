@@ -30,3 +30,28 @@ body {
   background: var(--bg-light); 
 }
 
+.noCollection_container{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 100vh; 
+    background: radial-gradient(120% 120% at 50% 0%, var(--bg-light) 50%, black);
+    border-radius: 12px;
+}
+
+.noCollection_container h1 {
+
+  position: absolute;
+  top: 40%;                 
+  transform: translateY(-50%);
+  
+  color: var(--text);
+  font-family: 'Roboto';
+  line-height: 110%;
+  letter-spacing: -2%;
+  font-size: 40px;
+  font-weight: 400;
+  
+}
+  
+
