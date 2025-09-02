@@ -3,13 +3,14 @@ import { Card } from "./Card.jsx"
 import { CardStats } from "./CardStats.jsx"
 import { Sort } from "./Sort.jsx"
 import {useQuery} from "@tanstack/react-query"
-import { fetchCards, fetchUserCollection } from "../api/pack1.js"
+import { fetchUserCollection } from "../api/pack1.js"
 import '../styles/collection.css'
 import { filter, search } from "../assets/index.js"
 import { Link } from 'react-router-dom';
 import { useFilterSort } from "../Contexts/FilterSortContext.jsx"
 import { Loader } from "./Loader.jsx"
 import { Error } from "./Error.jsx"
+
 
 export const Collection = () => {
 
@@ -31,29 +32,24 @@ export const Collection = () => {
   // Get the filtered options tha user selected
   
   if (!user) {
-    return <div style={{ height: "100vh" }}>
-      <h1></h1>
-      </div>;
+    return (
+      <div className="noCollection_container">
+       <h1>Login to access collection</h1>
+      </div>
+    ) 
   }
+
 
   const {
   isLoading: isLoadingCards,
   isError: isErrorCards,
   data: cards,
 } = useQuery({
-  queryKey: ['cards'],
-  queryFn: fetchCards,
+  queryKey: ['cards', user.userid],
+  queryFn: () => fetchUserCollection(user.userid),
 });
 
-const {
-  isLoading: isLoadingUserCollection,
-  isError: isErrorUserCollection,
-  data: userCollection,
-} = useQuery({
-  queryKey: ['cards2', user?.userid],
-  queryFn: () => fetchUserCollection(user.userid),
-  enabled: !!user?.userid,
-});
+
 
 if (isLoadingCards) { return (
      <div className="loader_container">
@@ -70,26 +66,30 @@ if (isLoadingCards) { return (
     )
   }
 
-const cardsWithUnlockStatus = cards.map(card => {
-  const matching = (userCollection || []).find(uc => uc.id === card.id);
-  return {
-    ...card,
-    unlocked: matching?.unlocked ?? false
-  };
-});
+// const cardsWithUnlockStatus = cards.map(card => {
+//   const matching = (car || []).find(uc => uc.id === card.id);
+//   return {
+//     ...card,
+//     unlocked: matching?.unlocked ?? false
+//   };
+// });
+
+
 
   // Send to Filter Component for dynamic 
+  const unlockedCards = cards.filter(card => card.unlocked);
+  console.log("Unlocked Cards:", unlockedCards);
+
   const cardTypes = [...new Set(cards.map((card) => card.cardType))];
-  const filterCardTypes = [...new Set(cards.map((card) => card.filterCardType))];
+  const filterCardTypes = [...new Set(cards.map((card) => card.frametype))];
   const attributeTypes = [...new Set(cards.map((card) => card.attribute))];
   const levelTypes = [...new Set(cards.map((card) => card.level))];
-  const monsterTypes = [...new Set(cards.map((card) => card.monsterType))];
-  const SpellTrapCardTypes = [...new Set(cards.map((card) => card.SpellTrapCardType))];
+  const monsterTypes = [...new Set(cards.map((card) => card.race))];
   const rarityTypes = [...new Set(cards.map((card) => card.rarity))];
 
   
   // Apply filters
-  const filteredCards = cardsWithUnlockStatus.filter((card) => {
+  const filteredCards = cards.filter((card) => {
     const matchesType = selectedTypes.length === 0 || selectedTypes.includes(card.filterCardType);
     const matchesAttribute = selectedAttributes.length === 0 || selectedAttributes.includes(card.attribute);
     const matchesLevel = selectedLevels.length === 0 || selectedLevels.includes(card.level);
@@ -169,7 +169,6 @@ const cardsWithUnlockStatus = cards.map(card => {
           attributeTypes,
           levelTypes,
           monsterTypes,
-          SpellTrapCardTypes,
         }}>
           <button className="filterBtn">
             <h2>Filters</h2>
@@ -179,8 +178,10 @@ const cardsWithUnlockStatus = cards.map(card => {
          
       </div>
      
-      {cardTypes.map((type) => (
-        <h2 key={type} className="type_title"></h2>
+      {cardTypes.map((type, index) => (
+        <h2 key={`${type}-${index}`} className="type_title">
+          {type}
+        </h2>
       ))}
     
       <div className="cards_grid">
@@ -188,7 +189,7 @@ const cardsWithUnlockStatus = cards.map(card => {
         <div key={card.id} onClick={() => setSelectedCard(card)}>
           <Card data={card} />
         </div>
-  ))}
+      ))}
       </div>
         {selectedCard && (
           <CardStats card={selectedCard} onClose={() => setSelectedCard(null)} />
@@ -196,6 +197,7 @@ const cardsWithUnlockStatus = cards.map(card => {
         {isSortbtnPressed && (
           <Sort onClose={() => setisSortbtnPressed(false)} />
         )}
+     
         
   </div>
   )
