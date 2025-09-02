@@ -3,7 +3,6 @@ import {Navbar} from './components/Navbar'
 import {Home} from './components/Home'
 import {Shop} from './components/Shop'
 import {Collection} from './components/Collection'
-import {Footer} from './components/Footer'
 import { Filter } from "./components/Filter"
 import { Login } from './components/Login';
 import { Register } from './components/Register';
@@ -42,7 +41,7 @@ function App() {
                   <Route path="/collection" element={<Collection />} />
                   <Route path="/collection/filter" element={<Filter />} />
                 </Routes>
-                {/* <Footer /> */}
+               
               </>
             }
           />
