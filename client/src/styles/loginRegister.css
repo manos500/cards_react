@@ -19,7 +19,7 @@
   transform: translate(-50%, -50%);
   max-width: 400px;
   width: 70vw;
-  background: var(--gradient);
+  background: var(--bg-dark);
   border: var(--border-card);
   border-top: var(--highlight);
   border-radius: 10px;
