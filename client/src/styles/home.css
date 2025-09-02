@@ -7,7 +7,7 @@
   grid-template-rows: repeat(10, 10vh);
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: 85vw;               
   left: 50%;                 
   transform: translateX(-50%);
@@ -85,20 +85,19 @@
 }
 
 .home_btn{
+  margin-left: 1px;
   margin-top: 32px;
   padding: 0.75rem 2.5rem;
   border: var(--border-card);
-  border-radius: 25px;
+  border-radius: 12px;
   font-size: 18px;
   color: var(--text);
   font-weight: 700;
   cursor: pointer;
-  background: radial-gradient(120% 120% at 50% 0%, hsl(0, 0%, 13%) 50%, var(--bg-light));
+  background: hsl(0, 0%, 95%);
 }
 
-.home_btn:hover{
-  background: radial-gradient(120% 120% at 50% 0%, hsl(0, 0%, 10%) 50%, var(--bg));
-}
+
 
 .pack:nth-child(2){
   background-image: url("http://localhost:5000/public/assets/pack1.png"); 
