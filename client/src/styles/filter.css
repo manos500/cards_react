@@ -1,9 +1,18 @@
+@import './colorPalette.css';
+
+
+
+a {
+  text-decoration: none;
+}
+
 .filter_options_container{
     width: 100%;
     height: auto;
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding-bottom: 60px;
 }
 
 .filter_title{
@@ -22,7 +31,7 @@
     list-style: none;
     margin-bottom: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 300px);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 15px;
     place-items: center;
     padding-bottom: 30px;
@@ -44,6 +53,19 @@
 
 }
 
+.filter_btn{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 220px;         
+  border: 2px solid #8a8a8a;
+  background-color: #686d77;
+  border-radius: 18px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
 .option_btn:hover{
     opacity: 0.9;
 }
@@ -61,7 +83,7 @@
   align-items: center;
   width: 100%;
   height: 100px;
-  background: #27292d;
+  background: var(--bg-light);
   bottom: 0;
 }
 
@@ -76,4 +98,20 @@
 .ok_btn{
     background: linear-gradient(to top, #11790e 0%, #47aa44 100%);
     border: 2px solid #23dd1c;
+}
+
+@media (max-width: 695px) {
+   .filter_btn {
+    height: 40px;
+    width: 150px;         
+    font-size: 17px;
+}
+}
+
+@media (max-width: 495px) {
+   .filter_btn {
+    height: 40px;
+    width: 120px;         
+    font-size: 17px;
+}
 }

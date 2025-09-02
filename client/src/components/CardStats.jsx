@@ -15,8 +15,8 @@ export const CardStats = ({card, onClose}) => {
         </div>
         <div className="cardStats_top1">
             <h2>{card.name}</h2>
-            <p className='gray_text'><strong>[{card.monsterType}/{card.cardType}]</strong></p>           
-             {card.attack >= 0 &&<p>ATK: {card.attack} / DEF: {card.defense}</p>}   
+            <p className='gray_text'><strong>[{card.race}/{card.frametype}]</strong></p>           
+             {card.attack > 0 && <p>ATK: {card.attack} / DEF: {card.defense}</p>}   
         </div>
         <div className="cardStats_top2">
           {levelImage && <img src={levelImage} alt={card.level} />}

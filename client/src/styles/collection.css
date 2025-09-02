@@ -10,6 +10,8 @@ body {
     text-align: center;
 }
 
+
+
 .collection_container.blurred {
   filter: blur(3px);
   pointer-events: none;

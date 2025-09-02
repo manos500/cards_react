@@ -20,7 +20,6 @@ const {
   attributeTypes = [],
   levelTypes = [],
   monsterTypes = [],
-  SpellTrapCardTypes = []
 } = location.state || {};
 
   const toggleTypes = (type) => {
@@ -74,21 +73,14 @@ const {
         ))}
       </div>
 
-      <h2>Spell/Trap Type</h2>
-      <div className="card_type_section">
-        {SpellTrapCardTypes.map((type, index) => (
-          <li key={index}>
-            <button className='option_btn'>{type}</button>
-          </li>
-        ))}
-      </div>
+   
       <div className='options_footer'>
-        <button className='option_btn clear_filter_btn' onClick={clearFilters}>Clear Filters</button>
+        <button className='filter_btn clear_filter_btn' onClick={clearFilters}>Clear Filters</button>
         <Link to="/collection">
-          <button className='option_btn cancel_btn' onClick={clearFilters}>Cancel</button>
+          <button className='filter_btn cancel_btn' onClick={clearFilters}>Cancel</button>
         </Link>
         <Link to="/collection" state={{ selectedTypes, selectedAttributes, selectedLevels, selectedMonsterTypes, selectedSpellTrapTypes }}>
-          <button className='option_btn ok_btn'>Ok</button>
+          <button className='filter_btn ok_btn'>Ok</button>
         </Link>
       </div>
     </div>
