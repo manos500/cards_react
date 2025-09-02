@@ -42,12 +42,12 @@ export const Navbar = () => {
         <div className='links_container'>
           {!isScreenSmall ? (
             <>
-              <Link to="/" className='hover-underline-animation'>Home</Link>
-              <Link to="/shop" className='hover-underline-animation'>Shop</Link>
-              <Link to="/collection" className='hover-underline-animation'>Collection</Link>
+              <Link to="/" className='link hover-underline-animation'>Home</Link>
+              <Link to="/shop" className='link hover-underline-animation'>Shop</Link>
+              <Link to="/collection" className='link hover-underline-animation'>Collection</Link>
               {!user ? 
-                <Link to="/login" >
-                  <div className='login_btn'>Login</div>
+                <Link to="/login" className='login_btn light'>
+                  Login
                 </Link> : 
                 <button onClick={() => logout()} className='login_btn'>Logout</button>
               }
@@ -72,12 +72,12 @@ export const Navbar = () => {
                     className='hidden_menu_container'
                   >
                     <div className='hidden_links_container'>
-                      <Link to="/" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Home</Link>
-                      <Link to="/shop" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Shop</Link>
-                      <Link to="/collection" className='hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Collection</Link>
+                      <Link to="/" className='link hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Home</Link>
+                      <Link to="/shop" className='link hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Shop</Link>
+                      <Link to="/collection" className='link hover-underline-animation' onClick={() => SetLinksMenuToggle(false)}>Collection</Link>
                       {!user ? 
-                        <Link to="/login" >
-                          <div className='login_btn'>Login</div>
+                        <Link to="/login" className='login_btn light'>
+                          Login
                         </Link> : 
                         <button onClick={() => logout()} className='login_btn'>Logout</button>
                       }
