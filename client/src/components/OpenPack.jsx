@@ -36,9 +36,15 @@ export const OpenPack = () => {
     setOpenedCards(newCards);
   }, [cards, selectedPack]);
 
+  useEffect(() => {
+    if (!selectedPack) {
+      navigate("/shop", { replace: true });
+    }
+  }, [selectedPack, navigate]);
+
   const handleUnlockCard = async (card) => {
   try {
-    await unlockCards(user.userid, card.id); // στέλνεις μόνο το μοναδικό card.id
+    await unlockCards(user.userid, card.id); 
     console.log(user.userid, card.id);
   } catch (error) {
     alert("Failed to unlock card");
