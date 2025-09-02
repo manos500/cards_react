@@ -6,9 +6,6 @@ import { fileURLToPath } from 'url';
 import { client } from './connection.js';
 import bcrypt from 'bcrypt';
 
-
-
-// Δημιουργία __dirname για ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -77,6 +74,7 @@ app.post('/register', async (req, res) => {
       "SELECT * FROM users WHERE email = $1",
       [email]
     );
+
     if (existingUser.rows.length > 0) {
       return res.status(400).json({ message: "Ο χρήστης υπάρχει ήδη." });
     }
@@ -90,10 +88,17 @@ app.post('/register', async (req, res) => {
 
     const userId = newUser.rows[0].userid;
 
-    await client.query(`
-      INSERT INTO user_collection (userid, cardid, unlocked)
-      SELECT $1, id, false FROM cards
-    `, [userId]);
+
+    const userCollectionResults = await client.query(
+      `INSERT INTO user_collection (user_id) VALUES ($1) RETURNING id`,[userId]
+    )
+
+    const collectionId = userCollectionResults.rows[0].id;
+
+    await client.query(
+      `INSERT INTO user_collection_cards (user_collection_id, cards_id, unlocked) SELECT $1, id, false FROM cards`,
+      [collectionId]
+    )
 
     res.status(201).json({ message: "Ο χρήστης δημιουργήθηκε επιτυχώς." });
 
@@ -105,24 +110,36 @@ app.post('/register', async (req, res) => {
 app.post('/unlockCards', async (req, res) => {
   try {
     const { userId, cardId } = req.body;
+
     if (!userId || !cardId) {
-      return res.status(400).json({ message: 'Invalid input' });
+      return res.status(400).json({ message: 'Missing userId or cardId' });
     }
 
-    await client.query(`
-  INSERT INTO user_collection (userid, cardid, unlocked)
-  VALUES ($1, $2, true)
-  ON CONFLICT (userid, cardid)
-  DO UPDATE SET unlocked = true;
-`, [userId, cardId]);
+    const result = await client.query(
+      `UPDATE user_collection_cards ucc
+       SET unlocked = true
+       FROM user_collection uc
+       WHERE ucc.user_collection_id = uc.id
+         AND uc.user_id = $1
+         AND ucc.cards_id = $2
+       RETURNING ucc.*;`,
+      [userId, cardId]
+    );
 
-    res.status(200).json({ message: 'Card unlocked successfully' });
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: 'Card not found for this user' });
+    }
 
+    res.status(200).json({
+      message: 'Card unlocked successfully',
+      card: result.rows[0],
+    });
   } catch (err) {
-    console.error('UnlockCards error:', err);  // **ΠΡΟΣΘΕΣΕ ΑΥΤΟ**
-    res.status(500).send('Error inserting data: ' + err.message);
+    console.error('UnlockCards error:', err);
+    res.status(500).json({ message: 'Failed to unlock card', error: err.message });
   }
 });
+
 
 
 
@@ -133,11 +150,10 @@ app.get('/collection/:userId' , async (req, res) =>{
     console.log("Fetching cards for user:", userId);
 
     const result = await client.query(`
-      SELECT c.*, uc.unlocked
-      FROM user_collection uc
-      JOIN cards c ON uc.cardid = c.id
-      WHERE uc.userid = $1 AND uc.unlocked = true
-    `, [userId]);
+      SELECT c.*, uc.*
+      FROM user_collection_cards uc
+      JOIN cards c ON uc.cards_id = c.id
+    `);
 
     res.json(result.rows);
   } catch (err) {
