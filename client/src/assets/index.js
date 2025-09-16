@@ -33,8 +33,6 @@ import C_rarity from './C_rarity.png'
 import R_rarity from './R_rarity.png'
 import SR_rarity from './SR_rarity.png'
 import UR_rarity from './UR_rarity.png'
-import instagramIcon from './instagramIcon.svg';
-import githubIcon from './githubIcon.svg';
 
 export {
     yugiohLogo,
@@ -72,6 +70,5 @@ export {
     R_rarity,
     SR_rarity,
     UR_rarity,
-    instagramIcon,
-    githubIcon
+    
 }
