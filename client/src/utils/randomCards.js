@@ -1,8 +1,8 @@
 const rarityChances = {
-  "Common": 65,
-  "Rare": 25,
-  "Super Rare": 8,
-  "Ultra Rare": 2
+  "Common": 68.5,
+  "Rare": 26,
+  "Super Rare": 5,
+  "Ultra Rare": 0.5
 };
 
 
@@ -26,7 +26,6 @@ export const drawCards = (cards, count = 9) => {
 
     const available = cards.filter(c => c.rarity === rarity);
 
-    // Αν δεν έχει κάρτες από αυτή τη σπανιότητα, πάρε τυχαία οποιαδήποτε
     if (available.length === 0) {
       const random = cards[Math.floor(Math.random() * cards.length)];
       drawn.push(random);
