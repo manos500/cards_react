@@ -19,7 +19,7 @@
   --text: hsl(0, 0%, 5%);
   --text-muted: hsl(0, 0%, 50%);
   --border: hsl(0, 0%, 30%);
-  --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light) 100%);
+  --gradient: linear-gradient(0deg, hsl(0, 0%, 85%) 95%, var(--bg-light) 100%);
   --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
   --highlight: hsl(0, 0%, 100%);
   --border-card: 1px solid var(--bg);

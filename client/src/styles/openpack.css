@@ -21,8 +21,10 @@
 }
 
 .button_section {
-   grid-row: 7 / 9;
-   grid-column: 5 / 8 ;
+   position: absolute;
+   top: 80%;
+   left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .button_section button {
@@ -36,3 +38,9 @@
   cursor: pointer;
   outline: none;
 }
+
+.button_section button:hover {
+  background: #1f2024;
+
+}
+
