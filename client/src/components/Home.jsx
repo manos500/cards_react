@@ -5,13 +5,14 @@ import { useEffect } from 'react';
 
 
 export const Home = () => {
-  const user = JSON.parse(sessionStorage.getItem("user"));
 
- 
-  if (user) {
-    console.log("Ο χρήστης είναι συνδεδεμένος ως:", user.username);
-  }else{
-    console.log("Ο χρήστης δεν είναι συνδεδεμένος ως:");
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const token = sessionStorage.getItem("token");
+
+  if (user && token) {
+    console.log(user,token);
+  } else {
+    console.log("Ο χρήστης δεν είναι συνδεδεμένος.");
   }
   return (
     <div>
