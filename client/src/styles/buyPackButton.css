@@ -1,0 +1,24 @@
+button {
+    border: none;
+    border-radius: 2px;
+    font-size: 20px;
+    letter-spacing: 0;
+    font-weight: 700;
+    padding: 6px 20px 6px 20px;
+    color : white;
+    cursor: pointer;
+}
+
+.buyPack {
+    background: linear-gradient(to right, #1cb324 0%, #22c23c 100%);
+    color: var(--text);
+    font-weight: 700;
+    border-radius: 0.5rem;
+    border: var(--border-card);
+    box-shadow: var(--shadow);
+    
+}
+
+.buyPack:hover{
+    opacity: 0.9;
+}
