@@ -3,6 +3,7 @@
 
 body {
   background: radial-gradient(120% 120% at 50% 0%, var(--bg-light) 50%, black);
+  min-height: 86vh;
 }
 
 .shop_container {
