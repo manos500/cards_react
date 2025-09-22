@@ -62,19 +62,6 @@ button {
     cursor: pointer;
 }
 
-.buyPack {
-    background: linear-gradient(to right, #1cb324 0%, #22c23c 100%);
-    color: var(--text);
-    font-weight: 700;
-    border-radius: 0.5rem;
-    border: var(--border-card);
-    box-shadow: var(--shadow);
-    
-}
-
-.buyPack:hover{
-    opacity: 0.9;
-}
 
 .PackInfo {
     background: linear-gradient(to right, #4285f4 0%, #3ea6ff 100%);
