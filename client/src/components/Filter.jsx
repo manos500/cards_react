@@ -1,7 +1,5 @@
-import '../styles/filter.css'
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import '../styles/filter.css';
+import { useLocation, Link } from 'react-router-dom';
 import { useFilterSort } from '../Contexts/FilterSortContext';
 
 export const Filter = () => {
@@ -9,80 +7,101 @@ export const Filter = () => {
     selectedTypes, setSelectedTypes,
     selectedAttributes, setSelectedAttributes,
     selectedLevels, setSelectedLevels,
-    selectedMonsterTypes, setSelectedMonsterTypes,
-    selectedSpellTrapTypes, setSelectedSpellTrapTypes,
+    selectedMonsterSpellTrapTypes, setSelectedMonsterSpellTrapTypes,
     clearFilters
   } = useFilterSort();
 
-const location = useLocation();
-const {
-  filterCardTypes = [],
-  attributeTypes = [],
-  levelTypes = [],
-  monsterTypes = [],
-} = location.state || {};
+  const location = useLocation();
+  const {
+    cardTypes = [],
+    attributeTypes = [],
+    levelTypes = [],
+    monsterSpellTrapTypes = [],
+  } = location.state || {};
 
-  const toggleTypes = (type) => {
-    setSelectedTypes((prev) => prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
-  );
-};
+  // Generic toggle for any filter category
+  const toggleTypes = (type, selected, setSelected) => {
+    setSelected(
+      selected.includes(type)
+        ? selected.filter(t => t !== type)
+        : [...selected, type]
+    );
+  };
 
   return (
     <div className='filter_options_container'>
       <h1 className="filter_title">Filters</h1>
 
+      {/* Card Type */}
       <h2>Card Type</h2>
       <div className="card_type_section">
-        {filterCardTypes.map((type, index) => (
+        {cardTypes.map((type, index) => (
           <li key={index}>
             <button
-            className={`option_btn ${selectedTypes.includes(type) ? 'selected' : ''}`}
-            onClick={() => toggleTypes(type, selectedTypes, setSelectedTypes)}
-          >
-            {type}
-          </button>
-
+              className={`option_btn ${selectedTypes.includes(type) ? 'selected' : ''}`}
+              onClick={() => toggleTypes(type, selectedTypes, setSelectedTypes)}
+            >
+              {type}
+            </button>
           </li>
         ))}
       </div>
 
+      {/* Attribute */}
       <h2>Attribute</h2>
       <div className="card_type_section">
         {attributeTypes.map((type, index) => (
           <li key={index}>
-            <button className='option_btn'>{type}</button>
+            <button
+              className={`option_btn ${selectedAttributes.includes(type) ? 'selected' : ''}`}
+              onClick={() => toggleTypes(type, selectedAttributes, setSelectedAttributes)}
+            >
+              {type}
+            </button>
           </li>
         ))}
       </div>
 
+      {/* Card Level */}
       <h2>Card Level</h2>
-      <div className="card_type_section">  
+      <div className="card_type_section">
         {levelTypes.map((type, index) => (
           <li key={index}>
-            <button className='option_btn'>{type}</button>
+            <button
+              className={`option_btn ${selectedLevels.includes(type) ? 'selected' : ''}`}
+              onClick={() => toggleTypes(type, selectedLevels, setSelectedLevels)}
+            >
+              {type}
+            </button>
           </li>
         ))}
       </div>
 
-      <h2>Monster Type</h2>
+      {/* Monster / Spell / Trap Type */}
+      <h2>Monster/Spell/Trap Type</h2>
       <div className="card_type_section">
-        {monsterTypes.map((type, index) => (
+        {monsterSpellTrapTypes.map((type, index) => (
           <li key={index}>
-            <button className='option_btn'>{type}</button>
+            <button
+              className={`option_btn ${selectedMonsterSpellTrapTypes.includes(type) ? 'selected' : ''}`}
+              onClick={() => toggleTypes(type, selectedMonsterSpellTrapTypes, setSelectedMonsterSpellTrapTypes)}
+            >
+              {type}
+            </button>
           </li>
         ))}
       </div>
 
-   
+      {/* Footer Buttons */}
       <div className='options_footer'>
         <button className='filter_btn clear_filter_btn' onClick={clearFilters}>Clear Filters</button>
         <Link to="/collection">
           <button className='filter_btn cancel_btn' onClick={clearFilters}>Cancel</button>
         </Link>
-        <Link to="/collection" state={{ selectedTypes, selectedAttributes, selectedLevels, selectedMonsterTypes, selectedSpellTrapTypes }}>
+        <Link to="/collection" state={{ selectedTypes, selectedAttributes, selectedLevels, selectedMonsterSpellTrapTypes }}>
           <button className='filter_btn ok_btn'>Ok</button>
         </Link>
       </div>
     </div>
   );
-}
+};

@@ -6,15 +6,9 @@ const backCardUrl = "http://localhost:5000/public/assets/backCard.png";
 
 export const Card = ({ data, onClick, flippable = false }) => {
   const {
-    id,
     name,
     image,
-    cardType,
-    attribute,
-    level,
-    monsterType,
     rarity,
-    description,
     unlocked
   } = data;
 

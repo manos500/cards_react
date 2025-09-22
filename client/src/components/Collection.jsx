@@ -18,8 +18,7 @@ export const Collection = () => {
     selectedTypes,
     selectedAttributes,
     selectedLevels,
-    selectedMonsterTypes,
-    selectedSpellTrapTypes,
+    selectedMonsterSpellTrapTypes,
     selectedSortOption
   } = useFilterSort();
 
@@ -27,11 +26,13 @@ export const Collection = () => {
   const [isSortbtnPressed, setisSortbtnPressed] = useState(false);
   const [searchCard, setsearchCard] = useState('');
   const [inputValue, setInputValue] = useState('');
-  const user = JSON.parse(sessionStorage.getItem("user"));
 
-  // Get the filtered options tha user selected
+
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const token = sessionStorage.getItem("token");
+
   
-  if (!user) {
+  if (!user || !token) {
     return (
       <div className="noCollection_container">
        <h1>Login to access collection</h1>
@@ -46,10 +47,10 @@ export const Collection = () => {
   data: cards,
 } = useQuery({
   queryKey: ['cards', user.userid],
-  queryFn: () => fetchUserCollection(user.userid),
+  queryFn: () => fetchUserCollection(),
 });
 
-
+console.log(cards)
 
 if (isLoadingCards) { return (
      <div className="loader_container">
@@ -66,52 +67,43 @@ if (isLoadingCards) { return (
     )
   }
 
-// const cardsWithUnlockStatus = cards.map(card => {
-//   const matching = (car || []).find(uc => uc.id === card.id);
-//   return {
-//     ...card,
-//     unlocked: matching?.unlocked ?? false
-//   };
-// });
 
-
-
-  // Send to Filter Component for dynamic 
-  const unlockedCards = cards.filter(card => card.unlocked);
-  console.log("Unlocked Cards:", unlockedCards);
-
-  const cardTypes = [...new Set(cards.map((card) => card.cardType))];
-  const filterCardTypes = [...new Set(cards.map((card) => card.frametype))];
+  const fullCardTypes = [...new Set(cards.map((card) => card.type))];
+  const cardTypes = [...new Set(cards.map((card) => card.frametype))];
   const attributeTypes = [...new Set(cards.map((card) => card.attribute))];
   const levelTypes = [...new Set(cards.map((card) => card.level))];
-  const monsterTypes = [...new Set(cards.map((card) => card.race))];
+  const monsterSpellTrapTypes = [...new Set(cards.map((card) => card.race))];
   const rarityTypes = [...new Set(cards.map((card) => card.rarity))];
+  const packTypes = [...new Set(cards.map((card) => card.set))];
 
-  
+
+  console.log(cardTypes)
   // Apply filters
   const filteredCards = cards.filter((card) => {
-    const matchesType = selectedTypes.length === 0 || selectedTypes.includes(card.filterCardType);
-    const matchesAttribute = selectedAttributes.length === 0 || selectedAttributes.includes(card.attribute);
-    const matchesLevel = selectedLevels.length === 0 || selectedLevels.includes(card.level);
-    const matchesMonsterType = selectedMonsterTypes.length === 0 || selectedMonsterTypes.includes(card.monsterType);
-    const matchesSpellTrapType = selectedSpellTrapTypes.length === 0 || selectedSpellTrapTypes.includes(card.SpellTrapCardType);
-    const rarityType = rarityTypes.length === 0 || rarityTypes.includes(card.rarity);
-    
-    const matchesSearchCard = searchCard === '' || card.name.toLowerCase().includes(searchCard.toLowerCase())
+    const matchesType = (!selectedTypes || selectedTypes.length === 0) || selectedTypes.includes(card.frametype);
+    const matchesAttribute = (!selectedAttributes || selectedAttributes.length === 0) || selectedAttributes.includes(card.attribute);
+    const matchesLevel = (!selectedLevels || selectedLevels.length === 0) || selectedLevels.includes(card.level);
+    const macthesMonsterSpellTrapType = (!selectedMonsterSpellTrapTypes || selectedMonsterSpellTrapTypes.length === 0) || selectedMonsterSpellTrapTypes.includes(card.race);
+    const rarityType = (!rarityTypes || rarityTypes.length === 0) || rarityTypes.includes(card.rarity);
 
-    return matchesType && matchesAttribute && matchesLevel && matchesMonsterType && matchesSpellTrapType && rarityType && matchesSearchCard;
-  })
+    const matchesSearchCard = searchCard === '' || card.name.toLowerCase().includes(searchCard.toLowerCase());
+
+    return matchesType && matchesAttribute && matchesLevel && macthesMonsterSpellTrapType && rarityType && matchesSearchCard;
+});
+
 
   const rarityOrder = ["Common", "Rare", "Super Rare", "Ultra Rare"];
 
   // Apply sorting
   let sortedCards = [...filteredCards];
 
+  console.log(sortedCards)
+
  if (!selectedSortOption) {
   // Default sort by cardTypeOrder
   sortedCards.sort((a, b) => {
-    const indexA = cardTypes.indexOf(a.cardType);
-    const indexB = cardTypes.indexOf(b.cardType);
+    const indexA = fullCardTypes.indexOf(a.type);
+    const indexB = fullCardTypes.indexOf(b.type);
     return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
   });
   } else if (selectedSortOption === "A-Z") {
@@ -165,10 +157,10 @@ if (isLoadingCards) { return (
             <img src={filter} alt="" />
           </button>
          <Link to="/collection/filter" state={{
-          filterCardTypes,
+          cardTypes,
           attributeTypes,
           levelTypes,
-          monsterTypes,
+          monsterSpellTrapTypes,
         }}>
           <button className="filterBtn">
             <h2>Filters</h2>
@@ -177,13 +169,7 @@ if (isLoadingCards) { return (
         </Link>
          
       </div>
-     
-      {cardTypes.map((type, index) => (
-        <h2 key={`${type}-${index}`} className="type_title">
-          {type}
-        </h2>
-      ))}
-    
+      
       <div className="cards_grid">
         {sortedCards.map((card) => (
         <div key={card.id} onClick={() => setSelectedCard(card)}>

@@ -14,12 +14,13 @@ export const Login = () => {
       const data = await loginUser(username, password);
       console.log("Login successful", data);
 
-      sessionStorage.setItem("user", JSON.stringify(data))
+      const { token, user } = data.data;
+
+      sessionStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("token", token);
       navigate("/");
     }catch (error){
       alert(error.message);
-
-    // καθάρισμα input πεδίων σε αποτυχημένο login
       setUsername('');
       setPassword('');
     }

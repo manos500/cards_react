@@ -1,5 +1,6 @@
 import '../styles/pack.css'
 import { Link } from 'react-router-dom';
+import { BuyPackButton } from './BuyPackButton';
 
 
 export const Pack = ({ data, onSelect }) => {
@@ -10,9 +11,7 @@ export const Pack = ({ data, onSelect }) => {
       <h3>{packName}</h3>
       <img src={packImage} alt="Pack" />
       <div className="button_container">
-      <Link to="/shop/buy">
-        <button className="buyPack" onClick={onSelect}>Buy</button>
-      </Link>
+        <BuyPackButton onClick={onSelect} />
       <Link to="/shop/info">
         <button className="PackInfo blue" onClick={onSelect}>Info</button>
       </Link>

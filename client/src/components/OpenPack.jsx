@@ -15,7 +15,7 @@ export const OpenPack = () => {
   const { selectedPack } = useContext(PackContext);
   const [openedCards, setOpenedCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  
 
   const { isLoading, isError, data: cards } = useQuery({
     queryKey: ['cards'],
@@ -24,7 +24,8 @@ export const OpenPack = () => {
 
   useEffect(() => {
     if (!cards || !selectedPack) return;
-    const filteredByPack = cards.filter(card => card.cardPack === selectedPack.packName);
+    const filteredByPack = cards.filter(card => card.set === selectedPack.packName);
+
     const newCards = drawCards(filteredByPack);
 
     newCards.sort((a, b) => {
@@ -44,8 +45,7 @@ export const OpenPack = () => {
 
   const handleUnlockCard = async (card) => {
   try {
-    await unlockCards(user.userid, card.id); 
-    console.log(user.userid, card.id);
+    await unlockCards(card.id); 
   } catch (error) {
     alert("Failed to unlock card");
   }
