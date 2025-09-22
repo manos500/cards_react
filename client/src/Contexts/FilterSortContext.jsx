@@ -9,15 +9,14 @@ export const FilterSortProvider = ({ children }) => {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedAttributes, setSelectedAttributes] = useState([]);
   const [selectedLevels, setSelectedLevels] = useState([]);
-  const [selectedMonsterTypes, setSelectedMonsterTypes] = useState([]);
-  const [selectedSpellTrapTypes, setSelectedSpellTrapTypes] = useState([]);
+  const [selectedMonsterSpellTrapTypes, setSelectedMonsterSpellTrapTypes] = useState([]);
 
   const clearFilters = () => {
     setSelectedTypes([]);
     setSelectedAttributes([]);
     setSelectedLevels([]);
-    setSelectedMonsterTypes([]);
-    setSelectedSpellTrapTypes([]);
+    setSelectedMonsterSpellTrapTypes([]);
+
   };
 
   return (
@@ -31,10 +30,8 @@ export const FilterSortProvider = ({ children }) => {
         setSelectedAttributes,
         selectedLevels,
         setSelectedLevels,
-        selectedMonsterTypes,
-        setSelectedMonsterTypes,
-        selectedSpellTrapTypes,
-        setSelectedSpellTrapTypes,
+        selectedMonsterSpellTrapTypes,
+        setSelectedMonsterSpellTrapTypes,
         clearFilters,
       }}
     >
