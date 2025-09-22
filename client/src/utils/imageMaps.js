@@ -13,14 +13,14 @@ export const attributeImages = {
 }
 
 export const spellTrapTypeImages = {
-    "Field Spell": fieldSpell,
-    "Continuous Spell": continuousSpell,
-    "Quick-Play Spell": quickSpell,
-    "Equip Spell": equipSpell,
-    "Counter Spell": counterSpell,
-    "Ritual Spell": ritualSpell,
-    "Counter Trap": counterSpell,
-    "Continuous Trap": continuousSpell  
+    "Field": fieldSpell,
+    "Continuous": continuousSpell,
+    "Quick-Play": quickSpell,
+    "Equip": equipSpell,
+    "Counter": counterSpell,
+    "Ritual": ritualSpell,
+    "Counter": counterSpell,
+    "Continuous": continuousSpell  
 }
 
 export const levelImages = {
@@ -38,16 +38,16 @@ export const levelImages = {
 }
 
 export const rarityImages = {
-    Common: C_rarity,
-    Rare: R_rarity,
+    "Common": C_rarity,
+    "Rare": R_rarity,
     "Super Rare": SR_rarity,
     "Ultra Rare": UR_rarity,
 
 }
 
 export const BackCardRarityImages = {
-    Common: C_rarity,
-    Rare: R_rarity,
+    "Common": C_rarity,
+    "Rare": R_rarity,
     "Super Rare": SR_rarity,
     "Ultra Rare": UR_rarity,
 
