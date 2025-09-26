@@ -5,7 +5,7 @@ import '../styles/shop.css'
 import { useContext } from "react"
 import { PackContext } from "../Contexts/PackContext"
 import {useQuery} from "@tanstack/react-query"
-import { fetchPacks } from "../api/pack1"
+import { fetchPacks } from "../services/apiClient.js"
 
 
 export const Shop = () => {

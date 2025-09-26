@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react"
 import { Card } from "./Card.jsx"
 import { CardStats } from "./CardStats.jsx"
 import {useQuery} from "@tanstack/react-query"
-import { fetchCards } from "../api/pack1.js"
+import { fetchCards } from "../services/apiClient.js"
 import '../styles/collection.css'
 import { PackContext } from "../Contexts/PackContext.jsx"
 import { Loader } from "./Loader"

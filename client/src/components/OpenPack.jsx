@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchCards, unlockCards } from '../api/pack1.js';
+import { fetchCards, unlockCards } from '../services/apiClient.js';
 import { PackContext } from '../Contexts/PackContext.jsx';
 import '../styles/openPack.css';
 import { Card } from './Card.jsx';

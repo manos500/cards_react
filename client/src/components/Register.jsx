@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { registerUser } from '../api/pack1';
+import { registerUser } from '../services/apiClient.js';
 
 export const Register = () => {
 

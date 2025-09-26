@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../styles/loginRegister.css'
-import { loginUser } from '../api/pack1';
+import { loginUser } from '../services/apiClient.js';
 import { Link, useNavigate  } from 'react-router-dom';
 
 export const Login = () => {

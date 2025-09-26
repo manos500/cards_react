@@ -3,7 +3,7 @@ import { Card } from "./Card.jsx"
 import { CardStats } from "./CardStats.jsx"
 import { Sort } from "./Sort.jsx"
 import {useQuery} from "@tanstack/react-query"
-import { fetchUserCollection } from "../api/pack1.js"
+import { fetchUserCollection } from "../services/apiClient.js"
 import '../styles/collection.css'
 import { filter, search } from "../assets/index.js"
 import { Link } from 'react-router-dom';

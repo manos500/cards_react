@@ -1,7 +1,6 @@
 import { motion, useMotionTemplate, useMotionValue, animate } from 'framer-motion';
 import { Link } from 'react-router-dom'
 import '../styles/home.css'
-import { useEffect } from 'react';
 
 
 export const Home = () => {
@@ -47,7 +46,7 @@ export const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 1 }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum pariatur voluptatum culpa veritatis iusto amet nesciunt natus voluptatibus odit ipsa quas modi maxime molestiae commodi quidem, facilis, exercitationem libero?
+              Yugioh Card Simulator lets you collect, unlock and explore Yu-Gi-Oh cards. Build your personal collection, open booster packs and discover rare cards!
             </motion.p>
             <Link to="/shop">
              <motion.button 
