@@ -17,7 +17,7 @@ export const login = async (req, res) => {
 
     // Sign the JWT including the userId
     const token = jwt.sign(
-      { userId: user.userid }, // <-- must match your DB column
+      { userId: user.userid }, 
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );

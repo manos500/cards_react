@@ -11,7 +11,7 @@ export const getCards = async (req, res, next) => {
 
 export const unlockCards = async (req, res, next) => {
   try {
-    const userId = req.user?.userId; // comes from JWT middleware
+    const userId = req.user?.userId; 
     const { cardId } = req.body;
 
     if (!userId || !cardId) {

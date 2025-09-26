@@ -18,7 +18,6 @@ export const Register = () => {
     } catch (error){
       alert(error.message);
 
-    // καθάρισμα input πεδίων σε αποτυχημένο login
       setUsername('');
       setEmail('')
       setPassword('');

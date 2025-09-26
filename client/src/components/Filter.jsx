@@ -19,7 +19,6 @@ export const Filter = () => {
     monsterSpellTrapTypes = [],
   } = location.state || {};
 
-  // Generic toggle for any filter category
   const toggleTypes = (type, selected, setSelected) => {
     setSelected(
       selected.includes(type)
@@ -32,7 +31,6 @@ export const Filter = () => {
     <div className='filter_options_container'>
       <h1 className="filter_title">Filters</h1>
 
-      {/* Card Type */}
       <h2>Card Type</h2>
       <div className="card_type_section">
         {cardTypes.map((type, index) => (
@@ -47,7 +45,6 @@ export const Filter = () => {
         ))}
       </div>
 
-      {/* Attribute */}
       <h2>Attribute</h2>
       <div className="card_type_section">
         {attributeTypes.map((type, index) => (
@@ -62,7 +59,6 @@ export const Filter = () => {
         ))}
       </div>
 
-      {/* Card Level */}
       <h2>Card Level</h2>
       <div className="card_type_section">
         {levelTypes.map((type, index) => (
@@ -77,7 +73,6 @@ export const Filter = () => {
         ))}
       </div>
 
-      {/* Monster / Spell / Trap Type */}
       <h2>Monster/Spell/Trap Type</h2>
       <div className="card_type_section">
         {monsterSpellTrapTypes.map((type, index) => (
@@ -92,7 +87,6 @@ export const Filter = () => {
         ))}
       </div>
 
-      {/* Footer Buttons */}
       <div className='options_footer'>
         <button className='filter_btn clear_filter_btn' onClick={clearFilters}>Clear Filters</button>
         <Link to="/collection">

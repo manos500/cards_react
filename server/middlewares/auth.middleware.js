@@ -14,7 +14,7 @@ export const verifyToken = (req, res, next) => {
     return res.status(403).json({ message: "Invalid or expired token." });
   }
 
-  console.log("Decoded JWT payload:", decoded); // should now include userId
+  console.log("Decoded JWT payload:", decoded); 
   req.user = decoded;
   next();
   });
