@@ -2,7 +2,7 @@ import { client } from "../connection.js";
 
 export const getUserCollection = async (req, res, next) => {
   try {
-    const userId = req.user.userId; // comes from JWT
+    const userId = req.user.userId; 
     console.log("req.user in getUserCollection:", req.user);
 
     const result = await client.query(

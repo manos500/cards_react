@@ -15,14 +15,13 @@ export const login = async (req, res) => {
     const doesPasswordMatch = await bcrypt.compare(password, user.password);
     if (!doesPasswordMatch) return res.status(400).json({ message: 'Wrong password' });
 
-    // Sign the JWT including the userId
     const token = jwt.sign(
       { userId: user.userid }, 
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );
 
-    // Remove password before sending user data
+    
     const { password: _, ...userData } = user;
 
     res.status(200).json({
